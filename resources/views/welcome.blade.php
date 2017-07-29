@@ -60,7 +60,7 @@
                     not received yet
                 </div>
 
-                {!! Form::open(['url' => '/']) !!}
+				{!! Form::open(['name' => 'test-form', 'url' => url('api'), 'id' => 'test-form', 'data-ajax-form' => 'true']) !!}
                 @captcha()
                 {!! Form::submit('Sumbit') !!}
                 {!! Form::close() !!}
@@ -68,11 +68,14 @@
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{{ url('js/dcommon.js') }}"></script>
         <script type="text/javascript">
-            _submitEvent = function() {
+			dcommon.init();
+            /*
+			_submitEvent = function() {
                 $.ajax({
                     type: "POST",
-                    url: "/api",
+                    url: "{{ url('api') }}",
                     data: {
                         "_token": "{{ csrf_token() }}",
                         "g-recaptcha-response": $("#g-recaptcha-response").val()
@@ -88,6 +91,7 @@
                     }
                 });
             };
+            */
         </script>
     </body>
 </html>
